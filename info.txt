@@ -1,0 +1,7 @@
+Links
+=====
+https://www.youtube.com/watch?v=BK4tuSbS7Xc&list=PLgCYzUzKIBE-8wE9Sv3yzYZlo70PBmFPz
+https://codingwithmitch.com/courses/rxjava-rxandroid-for-beginners/
+
+RxJava snd RxAndroid Dependancies
+

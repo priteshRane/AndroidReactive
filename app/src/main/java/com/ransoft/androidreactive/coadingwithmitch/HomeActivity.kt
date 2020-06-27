@@ -12,7 +12,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.functions.Predicate
 
@@ -21,6 +23,8 @@ class HomeActivity : AppCompatActivity() {
     private val TAG = "TASK OBSERVER"
 
     private lateinit var binding: ActivityHomeBinding
+    private val disposable: CompositeDisposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -47,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
 
             override fun onSubscribe(d: Disposable?) {
                 Log.d(TAG, "onSubscribe: called")
+                disposable.add(d)
             }
 
             override fun onNext(t: Task?) {
@@ -60,5 +65,22 @@ class HomeActivity : AppCompatActivity() {
                 Log.d(TAG, "onError: ", e)
             }
         })
+
+        // return disposable directly
+//        disposable.add(taskObservable.subscribe(object: Consumer<Task> {
+//                override fun accept(t: Task?) {
+//
+//                }
+//            })
+//        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Hard clear
+        disposable.clear()
+
+        // Shalow - not observe any more
+        // disposable.dispose()
     }
 }
