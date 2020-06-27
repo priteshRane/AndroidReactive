@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.ransoft.androidreactive.coadingwithmitch.HomeActivity
+import com.ransoft.androidreactive.coadingwithmitch.ui.home.HomeActivity
 import com.ransoft.androidreactive.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
